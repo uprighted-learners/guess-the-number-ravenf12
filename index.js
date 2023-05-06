@@ -1,4 +1,5 @@
 // Imports readline and allows us to do input in and out 
+const { exit, nextTick } = require('process');
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
 
@@ -14,36 +15,37 @@ function ask(questionText) {
 // Async start function being invoked
 start();
 
+
 // The function that starts the whole game
 async function start() {
   // Intro game text 
-  console.log("Let's play a game where you (human) make up a number and I (computer) try to guess it.")
+  let minN = 1;
+  let maxN = 100;
+  let randomNum = Math.floor(Math.random() * maxN + minN);
 
-  async function number() {
-    return Math.floor(Math.random() * max);
-    let results = number
-  }
+// node filename.js  
 
+// * Works pretty well.. Will run but immediately shuts down. If you take process.exit() away it lets you respond and gives console.log()
+secretNumber()
+async function secretNumber() {
+  let secretNumber = await ask('What is your secret number? \n')
+console.log(`You entered: ` + `${secretNumber}`);
+};
 
-  
-  // let secretNumber = await ask("What is your secret number?\nI won't peek, I promise...\n");
-async function secret() {
-  let secretNumber = await ask (What did you choose?);
+// *Sometimes runs, sometimes doesn't idk. This is not the full project of course, this is me just testing stuff to see what works and what doesn't. If process.exit() is taken out, won't run this at all. If you comment out secretNumber() this works fine.
+guessNum()
+async function guessNum() {
+  let Y = true;
+  let N = false;
+let guessNum = await ask(`Is your number ${randomNum}? Y/N \n`);
+if (randomNum === Y, randomNum === secretNumber) 
+console.log("Yay! I did it")
 }
-async function yesNo() {
-  let YN = await ask ( (answer === Y || answer === Y)){
-    console.log("Hell Yea!")
-  }
-}
-
-
-  // console.log('You entered: ' + secretNumber);
-async function number() {
-  return Math.floor(Math.random() * max);
-}
-  // Now try and complete the program.
+console.log(guessNum)
+ // Now try and complete the program.
 
 
 // stops the start function from running, "exits"
   process.exit();
 }
+
