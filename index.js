@@ -81,7 +81,7 @@ while(y != human) {
     let human = await ask(`Go higher for me..`);
     // If its lower, computer will asks to fo lower.
     if (humanAnswer > y) {
-      let human = await ask(`Try going lower..`)
+      let human = await ask(`Try going lower..`);
     }
 
     // If we got it right, we go to the yay
