@@ -39,7 +39,7 @@ while (secretNumber != randomNum){
   } else {
     let question = await ask (`Is it (h)igher or (l)ower?`)
     // if it's higher and it's the truth, do this:
-    if (question === `h` && secretNumber < randomNum) {
+    if (question === `h` && secretNumber > randomNum) {
       minN = randomNum + 1;
       randomNum = Math.round((maxN + minN) / 2);
       // Once we figure out if we are higher, computer guesses again.
@@ -64,32 +64,29 @@ while (secretNumber != randomNum){
 console.log(`Yay! I did it`) 
 
 // Now the computer thinks of a number:
-let y = Math.floor(Math.random(maxN + minN) / 2 );
-let humanAnswer;
+minN = 1;
+maxN = 100;
+let y = Math.floor(Math.random() * (maxN - minN + 1) + minN);
+
+
+
 
 // Computer asking us to guess
-let human  = await ask('Your turn! Guess my number! 1-100: \n')
-
+let humanAnswer = await ask('Your turn! Guess my number! 1-100: \n')
 // After we give our guess, the computer will answer one of three ways:
-while(y != human) {
-  // If the human guesses right, go to congrats
-  if (humanAnswer === y) {
-   break
+while(y !== humanAnswer) {
+  // If the answer needs to be lower, computer will ask to go lower
+  if (y < humanAnswer){
+    humanAnswer = await ask(`Go lower for me.. `)} 
+    // If its higher, computer will asks to go higher.
+  else if (y > humanAnswer){
+      humanAnswer = await ask(`Try going higher.. `);} 
+   // If we got it right, we go to the yay
+  else {(y === humanAnswer)
+    break
   }
-  // If the answer needs to be higher, computer will ask to go higher
-  else {(humanAnswer < y) 
-    let human = await ask(`Go higher for me..`);
-    // If its lower, computer will asks to fo lower.
-    if (humanAnswer > y) {
-      let human = await ask(`Try going lower..`);
-    }
+  }
 
-    // If we got it right, we go to the yay
-    if (humanAnswer === y){
-      break
-    }
-  }
-};
 console.log(`You did it!!`)
 
 // let minN = 1;
@@ -98,5 +95,4 @@ console.log(`You did it!!`)
 
 // stops the start function from running, "exits"
   process.exit();
-}
-
+};
